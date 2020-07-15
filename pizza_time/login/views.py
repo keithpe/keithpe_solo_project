@@ -116,7 +116,3 @@ def success(request):
         return redirect('/')
 
     return render(request, 'success.html')
-
-
-def pizza(request):
-    return render(request, 'pizza.html')
