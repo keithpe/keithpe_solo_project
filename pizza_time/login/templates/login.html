@@ -10,67 +10,32 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Registration</h2><br>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li class='text-danger' {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <br>
-                <form action="registration" method="POST">
-                    {% csrf_token %}
-                    <label class="col-lg-3" for="first_name">First Name</label>
-                    <input class="col-lg-7" type="text" id="first_name" name="first_name"
-                        value={{request.session.first_name}}><br>
-                    <label class="col-lg-3" for="last_name">Last Name</label>
-                    <input class="col-lg-7" type="text" id="last_name" name="last_name"
-                        value={{request.session.last_name}}><br>
-                    <label class="col-lg-3" for="alias_name">Alias Name</label>
-                    <input class="col-lg-7" type="text" id="alias_name" name="alias_name"
-                        value={{request.session.alias_name}}><br>
-                    <label class="col-lg-3" for="email">Email</label>
-                    <input class="col-lg-7" type="text" id="email" name="email" value={{request.session.email}}><br>
-                    <label class="col-lg-3" for="password">Password</label>
-                    <input class="col-lg-7" type="password" id="password" name="password"
-                        value={{request.session.password}}><br>
-                    <label class="col-lg-3" for="confirm_pw">Confirm PW</label>
-                    <input class="col-lg-7" type="password" id="confirm_pw" name="confirm_pw"
-                        value={{request.session.confirm_pw}}><br>
-                    <label class="col-lg-3" for="birthday">Birthday</label>
-                    <input class="col-lg-4" type="date" id="birthday" name="birthday"
-                        value="{{request.session.birthday}}" placeholder="yyyy-mm-dd"
-                        pattern="(((19|20)([2468][048]|[13579][26]|0[48])|2000)[-]02[-]29|((19|20)[0-9]{2}[-](0[4678]|1[02])[-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[-](0[1359]|11)[-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[-]02[-](0[1-9]|1[0-9]|2[0-8])))">
-                    <br><br>
-                    <input class="btn btn-primary col-sm-4" type="submit" value="Register">
-                    <input type="hidden" name='process' id='process' value='registered'>
-                </form>
-            </div>
+    <div class="container-fluid">
 
-            <div class="col-sm-6">
-                <br>
-                <h2>Login</h2>
+        <br>
+        <div class="container-fluid row col-12 border-dark border-bottom mb-5">
+            <h1 class='col-9'>Pizza Pete's</h1>
+            <a class='col-3 mt-2' href="register">Don't have an Account? Register</a>
+        </div>
+
+        <div class="container-fluid row col-12">
+            <div class="col-6 mx-auto">
+                <h2 class="mx-auto col-5">Welcome Back!</h2>
+                <br><br>
                 <form action="login" method="POST">
                     {% csrf_token %}
-                    <label class="col-lg-3" for="email">Email</label>
+                    <label class="col-lg-2 text-right offset-md-1" for="email">Email</label>
                     <input class="col-lg-7" type="text" id="email" name="email"><br>
-                    <label class="col-lg-3" for="password">Password</label>
+                    <label class="col-lg-2 text-right offset-md-1" for="password">Password</label>
                     <input class="col-lg-7" type="password" id="password" name="password"><br><br>
-                    <input class="btn btn-primary col-sm-4" type="submit" value="Login">
+                    <input class="offset-md-3 btn btn-primary col-7" type="submit" value="Login">
                     <input type="hidden" name='process' id='process' value='logged in'>
                     <br><br>
-                    <p class='text-danger'>{{request.session.invalid_account}}</p>
-
+                    <p class='offset-md-4 text-danger'>{{request.session.invalid_account}}</p>
                 </form>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

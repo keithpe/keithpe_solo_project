@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
 
-def index(request):
-        # return HttpResponse("This is the Pizza Time Main Page")
-        return render(request, 'index.html')
+
+def pizza(request):
+    return render(request, 'pizza.html')

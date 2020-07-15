@@ -9,6 +9,10 @@ def index(request):
     return render(request, "login.html")
 
 
+def register(request):
+    return render(request, "register.html")
+
+
 def registration(request):
     # Process the registration form
 
@@ -29,7 +33,7 @@ def registration(request):
             request.session['birthday'] = request.POST['birthday']
 
         # redirect the user back to the form to fix the errors
-        return redirect('/')
+        return redirect('/register')
 
     # Use bcrytp to create a hash for this password and store the hashed value into our database
     # with the rest of the user information
@@ -53,7 +57,7 @@ def registration(request):
     request.session['status'] = 'success'
 
     # return redirect('/success')
-    return redirect('/wishes')
+    return redirect('/pizza')
 
 
 def login(request):
@@ -83,7 +87,7 @@ def login(request):
             request.session['status'] = 'success'
 
             # return redirect('login/success')
-            return redirect('/wishes')
+            return redirect('/pizza')
         else:
             request.session['invalid_account'] = 'Username or password is incorrect'
             return redirect('/')
@@ -112,3 +116,7 @@ def success(request):
         return redirect('/')
 
     return render(request, 'success.html')
+
+
+def pizza(request):
+    return render(request, 'pizza.html')
