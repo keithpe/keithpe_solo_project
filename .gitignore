@@ -1,5 +1,5 @@
 db.sqlite3
-*.pyc
-*.bak
+**/*.pyc
+**/*.bak
 .vscode
 py3Env
