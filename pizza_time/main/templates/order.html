@@ -20,7 +20,88 @@
     </div>
 
     <div class='container-fluid col-12'>
-        <h1 class='col-3 mx-auto'>CRAFT-A-PIZZA</h1>
+        <h1 class='col-3 mx-auto'>CRAFT-A-PIZZA</h1><br><br>
+    </div>
+    <div class='container-fluid col-8'>
+        <form action="">
+            <label class='col-2 ml-5 text-right' for="method">Method:</label>
+            <select class='col-4' name="method" id="method">
+                <option value="carry_out">Carry Out</option>
+                <option value="delivery">Delivery</option>
+            </select><br>
+            <label class='col-2 ml-5 text-right' for="size">Size:</label>
+            <select class='col-4' name="size" id="size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="x-large">Extra Large</option>
+            </select><br>
+            <label class='col-2 ml-5 text-right' for="crust">Crust:</label>
+            <select class='col-4' name="crust" id="crust">
+                <option value="thin">Thin</option>
+                <option value="thick">Thick</option>
+                <option value="deep_dish">Deep Dish</option>
+            </select><br>
+            <label class='col-2 ml-5 text-right' for="qty">Qty:</label>
+            <input class='col-1' type="text"><br><br>
+            <label class=' col-2' for="toppings">Toppings:</label>
+            <div class='col-12 border border-dark p-2'>
+                <fieldset>
+                    <div class='col-12 container inline-block'>
+                        <input type="checkbox" id="mushrooms" name="mushrooms" value="mushrooms">
+                        <label class='col-3' for="mushrooms">Mushrooms</label>
+                        <input type="checkbox" id="onions" name="onions" value="onions">
+                        <label class='col-3' for="onions">Onions</label>
+                        <input type="checkbox" id="basil" name="basil" value="basil">
+                        <label class='col-2' for="basil">Basil</label>
+                        <input type="checkbox" id="garlic" name="garlic" value="garlic">
+                        <label class='col-2' for="garlic">Garlic</label>
+                    </div>
+                    <div class='col-12 container inline-block'>
+                        <input type="checkbox" id="green_peppers" name="green_peppers" value="green_peppers">
+                        <label class='col-3' for="green_peppers">Green Peppers</label>
+                        <input type="checkbox" id="tomato" name="tomato" value="tomato">
+                        <label class='col-3' for="tomato">Tomato</label>
+                        <input type="checkbox" id="olives" name="olives" value="olives">
+                        <label class='col-2' for="olives">Green Olives</label>
+                        <input type="checkbox" id="spinach" name="spinach" value="spinach">
+                        <label class='col-2' for="spinach">Spinach</label>
+                    </div>
+                    <div class='col-12 container inline-block'>
+                        <input type="checkbox" id="pepperoni" name="pepperoni" value="pepperoni">
+                        <label class='col-3' for="pepperoni">Pepperoni</label>
+                        <input type="checkbox" id="sausage" name="sausage" value="sausage">
+                        <label class='col-3' for="sausage">Sausage</label>
+                        <input type="checkbox" id="bacon" name="bacon" value="bacon">
+                        <label class='col-2' for="bacon">Bacon</label>
+                        <input type="checkbox" id="chicken" name="chicken" value="chicken">
+                        <label class='col-2' for="chicken">Chicken</label>
+                    </div>
+                    <div class='col-12 container inline-block'>
+                        <input type="checkbox" id="pineapple" name="pineapple" value="pineapple">
+                        <label class='col-3' for="pineapple">Pineapple</label>
+                        <input type="checkbox" id="salami" name="salami" value="salami">
+                        <label class='col-3' for="salami">Salami</label>
+                        <input type="checkbox" id="provolone" name="provolone" value="provolone">
+                        <label class='col-2' for="provolone">Provolone</label>
+                        <input type="checkbox" id="asiago" name="asiago" value="asiago">
+                        <label class='col-2' for="asiago">Asiago</label>
+                    </div>
+                    <div class='col-12 container inline-block'>
+                        <input type="checkbox" id="meatballs" name="meatballs" value="meatballs">
+                        <label class='col-3' for="meatballs">Meatballs</label>
+                        <input type="checkbox" id="feta" name="feta" value="feta">
+                        <label class='col-3' for="feta">Feta</label>
+                        <input type="checkbox" id="pesta" name="pesta" value="pesta">
+                        <label class='col-2' for="pesta">Pesta</label>
+                        <input type="checkbox" id="prosciutto" name="prosciutto" value="prosciutto">
+                        <label class='col-2' for="prosciutto">Proscuitto</label>
+                    </div>
+                </fieldset>
+            </div><br>
+            <input type="submit" class='btn btn-primary col-4' value='Add to Order'>
+            <a class='btn btn-danger' href="/pizza/quick">Cancel</a>
+        </form>
     </div>
 </body>
 
