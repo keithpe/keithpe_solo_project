@@ -57,7 +57,7 @@ def registration(request):
     request.session['status'] = 'success'
 
     # return redirect('/success')
-    return redirect('/pizza')
+    return redirect('pizza/quick')
 
 
 def login(request):
@@ -87,7 +87,7 @@ def login(request):
             request.session['status'] = 'success'
 
             # return redirect('login/success')
-            return redirect('/pizza')
+            return redirect('pizza/quick')
         else:
             request.session['invalid_account'] = 'Username or password is incorrect'
             return redirect('/')
