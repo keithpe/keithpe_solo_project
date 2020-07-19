@@ -24,7 +24,7 @@
         <h1 class='col-3 mx-auto'>CRAFT-A-PIZZA</h1><br><br>
     </div>
     <div class='container-fluid col-8'>
-        <form action="/pizza/order/process/" method="post">
+        <form action="/pizza/order/add_item/" method="post">
             {% csrf_token %}
             <label class='col-2 ml-5 text-right' for="method">Method:</label>
             <select class='col-4' name="method" id="method">
@@ -101,7 +101,8 @@
                     </div>
                 </fieldset>
             </div><br>
-            <input type="submit" class='btn btn-primary col-4' value='Checkout'>
+            <input type="submit" class='btn btn-primary col-4' value='Add this to your order'>
+            <a class='btn btn-success' href="/pizza/order/checkout">Checkout</a>
             <a class='btn btn-danger' href="/pizza/quick">Cancel</a>
         </form>
     </div>

@@ -21,10 +21,14 @@ def order_surprise(request):
     return render(request, 'order.html')
 
 
+def order_add_item(request):
+    print('adding new item to order')
+    return redirect('/pizza/order')
+
+
 def order_process(request):
     print('Processing order')
     print('request.POST', request.POST)
-    # Process the order and call the checkout page
     return render(request, 'checkout.html')
 
 
