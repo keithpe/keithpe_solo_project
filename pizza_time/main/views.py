@@ -22,8 +22,9 @@ def order_surprise(request):
 
 
 def order_process(request):
-    print('Process order')
-    # Process the order and
+    print('Processing order')
+    print('request.POST', request.POST)
+    # Process the order and call the checkout page
     return render(request, 'checkout.html')
 
 
