@@ -130,14 +130,12 @@ def edit(request):
 
     # Load current values into the session
     if 'editing' not in request.session:
-        print('editing not found. Creating it')
         request.session['editing'] = 'editing'
         request.session['first_name'] = this_user.first_name
         request.session['last_name'] = this_user.last_name
         request.session['alias_name'] = this_user.alias_name
         request.session['address'] = this_user.address
         request.session['city'] = this_user.city
-        print('***** this_user.city', this_user.city)
         request.session['state'] = this_user.state
         request.session['zipcode'] = this_user.zipcode
 
@@ -162,8 +160,6 @@ def update(request):
             request.session['city'] = request.POST['city']
             request.session['state'] = request.POST['state']
             request.session['zipcode'] = request.POST['zipcode']
-            # request.session['email'] = request.POST['email']
-            # request.session['birthday'] = request.POST['birthday']
 
         # redirect the user back to the form to fix the errors
         return redirect('/user/edit')
