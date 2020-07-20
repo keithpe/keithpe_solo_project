@@ -30,6 +30,10 @@ def registration(request):
             request.session['last_name'] = request.POST['last_name']
             request.session['alias_name'] = request.POST['alias_name']
             request.session['email'] = request.POST['email']
+            request.session['address'] = request.POST['address']
+            request.session['city'] = request.POST['city']
+            request.session['zipcode'] = request.POST['zipcode']
+            request.session['state'] = request.POST['state']
             request.session['birthday'] = request.POST['birthday']
 
         # redirect the user back to the form to fix the errors
@@ -42,7 +46,10 @@ def registration(request):
 
     # Create the user record for this new user,
     this_user = User(first_name=request.POST['first_name'],
-                     last_name=request.POST['last_name'], alias_name=request.POST['alias_name'], email=request.POST['email'], password=pw_hash, birthday=request.POST['birthday'])
+                     last_name=request.POST['last_name'], alias_name=request.POST['alias_name'],
+                     email=request.POST['email'], password=pw_hash, address=request.POST['address'],
+                     city=request.POST['city'], zipcode=request.POST['zipcode'],
+                     birthday=request.POST['birthday'])
 
     # And save it.
     this_user.save()
@@ -116,3 +123,81 @@ def success(request):
         return redirect('/')
 
     return render(request, 'success.html')
+
+
+def edit(request):
+    this_user = User.objects.get(id=request.session['userid'])
+
+    # Load current values into the session
+    if 'editing' not in request.session:
+        print('editing not found. Creating it')
+        request.session['editing'] = 'editing'
+        request.session['first_name'] = this_user.first_name
+        request.session['last_name'] = this_user.last_name
+        request.session['alias_name'] = this_user.alias_name
+        request.session['address'] = this_user.address
+        request.session['city'] = this_user.city
+        print('***** this_user.city', this_user.city)
+        request.session['state'] = this_user.state
+        request.session['zipcode'] = this_user.zipcode
+
+    context = {'this_user': this_user}
+    return render(request, 'edit.html', context)
+
+
+def update(request):
+
+    errors = User.objects.update_validator(request.POST)
+
+    if errors:
+        # Loop through each key-value pair and make a flash message
+        for key, value in errors.items():
+            messages.error(request, value)
+
+            # Save form info so we can display it back in the form when we get redirected.
+            request.session['first_name'] = request.POST['first_name']
+            request.session['last_name'] = request.POST['last_name']
+            request.session['alias_name'] = request.POST['alias_name']
+            request.session['address'] = request.POST['address']
+            request.session['city'] = request.POST['city']
+            request.session['state'] = request.POST['state']
+            request.session['zipcode'] = request.POST['zipcode']
+            # request.session['email'] = request.POST['email']
+            # request.session['birthday'] = request.POST['birthday']
+
+        # redirect the user back to the form to fix the errors
+        return redirect('/user/edit')
+
+    # Use bcrytp to create a hash for this password and store the hashed value into our database
+    # with the rest of the user information
+    # TODO: Add the ability to update password
+    # password = request.POST['password']
+    # pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    # Create the user record for this new user,
+    this_user = User.objects.get(id=request.session['userid'])
+    this_user.first_name = request.POST['first_name']
+    this_user.last_name = request.POST['last_name']
+    this_user.alias_name = request.POST['alias_name']
+    this_user.address = request.POST['address']
+    this_user.city = request.POST['city']
+    this_user.state = request.POST['state']
+    this_user.zipcode = request.POST['zipcode']
+
+    # And save it.
+    this_user.save()
+
+    # Save the first name so we can display it on the success page.
+    request.session['userid'] = this_user.id
+    request.session['first_name'] = this_user.first_name
+    request.session['last_name'] = this_user.last_name
+    request.session['alias_name'] = this_user.alias_name
+
+    # Set a session variable to indicate that we've successfully logged in. (access to success page will require it.)
+    request.session['status'] = 'success'
+
+    # Reset for next edit
+    del request.session['editing']
+
+    # return redirect('/success')
+    return redirect('/user/edit')
