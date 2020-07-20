@@ -23,7 +23,7 @@
     <h1 class='text-center'>Edit Your Profile</h1><br>
     <div class='col-12 row'>
         <div class='col-5 pt-2 pl-3 inline-block border border-dark'>
-            <h2 class='col-6 mx-auto'>Account Info {{request.session.state}}</h2><br>
+            <h2 class='col-6 mx-auto'>Account Info</h2><br>
             <form action="/user/update" method="POST">
                 {% csrf_token %}
                 <label class="col-3 text-right" for="first_name">First Name:</label>
