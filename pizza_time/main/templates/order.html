@@ -6,7 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.0/dojo/dojo.js"></script> -->
   <title>Pizza Time</title>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script>
+    console.log("********* JQUERY *********");
+    $(document).ready(function () {
+      console.log("document HAS BEEN loaded");
+    });
+  </script>
 </head>
 
 <body>
@@ -24,7 +32,7 @@
     <div class="container-xl col-12 m-0 p-1">
       <div class="row m-0 p-0">
         <div class="container-xl col-7 d-inline-block m-0 p-0">
-          <form action="/pizza/order/add_item/" method="post">
+          <form action="/pizza/order/item/new/" method="post">
             {% csrf_token %}
             <label class="col-2 ml-5 text-right" for="method">Method:</label>
             <select class="col-4" name="method" id="method">
@@ -45,71 +53,77 @@
               <option value="deep_dish">Deep Dish</option>
             </select><br />
             <label class="col-2 ml-5 text-right" for="qty">Qty:</label>
-            <input class="col-1" type="text" /><br /><br />
-            <label class="col-2" for="toppings">Toppings:</label>
-            <div class="col-12 border border-dark p-2">
+            <input class="col-1" type="text" name="qty" id="qty" value="1" /><br /><br />
+
+            <label class="col-2 ml-4" for="toppings">Toppings:</label>
+            <div class="col-9 ml-4 border border-dark p-2">
               <fieldset>
-                <div class="col-12 container inline-block">
+                <div class="col-12 inline-block">
                   <input type="checkbox" id="mushrooms" name="mushrooms" value="mushrooms" />
-                  <label class="col-3" for="mushrooms">Mushrooms</label>
+                  <label class="col-4" for="mushrooms">Mushrooms</label>
                   <input type="checkbox" id="onions" name="onions" value="onions" />
                   <label class="col-3" for="onions">Onions</label>
                   <input type="checkbox" id="basil" name="basil" value="basil" />
-                  <label class="col-2" for="basil">Basil</label>
-                  <input type="checkbox" id="garlic" name="garlic" value="garlic" />
-                  <label class="col-2" for="garlic">Garlic</label>
+                  <label class="col-3" for="basil">Basil</label>
                 </div>
                 <div class="col-12 container inline-block">
+                  <input type="checkbox" id="garlic" name="garlic" value="garlic" />
+                  <label class="col-4" for="garlic">Garlic</label>
                   <input type="checkbox" id="green_peppers" name="green_peppers" value="green_peppers" />
                   <label class="col-3" for="green_peppers">Green Peppers</label>
                   <input type="checkbox" id="tomato" name="tomato" value="tomato" />
                   <label class="col-3" for="tomato">Tomato</label>
-                  <input type="checkbox" id="olives" name="olives" value="olives" />
-                  <label class="col-2" for="olives">Green Olives</label>
-                  <input type="checkbox" id="spinach" name="spinach" value="spinach" />
-                  <label class="col-2" for="spinach">Spinach</label>
                 </div>
                 <div class="col-12 container inline-block">
+                  <input type="checkbox" id="olives" name="olives" value="olives" />
+                  <label class="col-4" for="olives">Green Olives</label>
+                  <input type="checkbox" id="spinach" name="spinach" value="spinach" />
+                  <label class="col-3" for="spinach">Spinach</label>
                   <input type="checkbox" id="pepperoni" name="pepperoni" value="pepperoni" />
                   <label class="col-3" for="pepperoni">Pepperoni</label>
+                </div>
+                <div class="col-12 container inline-block">
                   <input type="checkbox" id="sausage" name="sausage" value="sausage" />
-                  <label class="col-3" for="sausage">Sausage</label>
+                  <label class="col-4" for="sausage">Sausage</label>
                   <input type="checkbox" id="bacon" name="bacon" value="bacon" />
-                  <label class="col-2" for="bacon">Bacon</label>
+                  <label class="col-3" for="bacon">Bacon</label>
                   <input type="checkbox" id="chicken" name="chicken" value="chicken" />
-                  <label class="col-2" for="chicken">Chicken</label>
+                  <label class="col-3" for="chicken">Chicken</label>
                 </div>
                 <div class="col-12 container inline-block">
                   <input type="checkbox" id="pineapple" name="pineapple" value="pineapple" />
-                  <label class="col-3" for="pineapple">Pineapple</label>
+                  <label class="col-4" for="pineapple">Pineapple</label>
                   <input type="checkbox" id="salami" name="salami" value="salami" />
                   <label class="col-3" for="salami">Salami</label>
                   <input type="checkbox" id="provolone" name="provolone" value="provolone" />
-                  <label class="col-2" for="provolone">Provolone</label>
-                  <input type="checkbox" id="asiago" name="asiago" value="asiago" />
-                  <label class="col-2" for="asiago">Asiago</label>
+                  <label class="col-3" for="provolone">Provolone</label>
                 </div>
                 <div class="col-12 container inline-block">
+                  <input type="checkbox" id="asiago" name="asiago" value="asiago" />
+                  <label class="col-4" for="asiago">Asiago</label>
                   <input type="checkbox" id="meatballs" name="meatballs" value="meatballs" />
                   <label class="col-3" for="meatballs">Meatballs</label>
                   <input type="checkbox" id="feta" name="feta" value="feta" />
                   <label class="col-3" for="feta">Feta</label>
+                </div>
+                <div class="col-12 container inline-block">
                   <input type="checkbox" id="pesta" name="pesta" value="pesta" />
-                  <label class="col-2" for="pesta">Pesta</label>
+                  <label class="col-4" for="pesta">Pesta</label>
                   <input type="checkbox" id="prosciutto" name="prosciutto" value="prosciutto" />
-                  <label class="col-2" for="prosciutto">Proscuitto</label>
+                  <label class="col-3" for="prosciutto">Proscuitto</label>
                 </div>
               </fieldset>
             </div>
             <div class="row">
-              <input type="submit" class="btn btn-primary col-4 ml-4 mr-1 mt-1 mb-1" value="Add this to your order" />
-              <a class="btn btn-success col-4 mt-1 mb-1 mr-5" href="/pizza/order/checkout">Checkout</a>
-              <a class="btn btn-danger col-2 mt-1 mb-1 ml-5" href="/pizza/quick">Cancel</a>
+              <input type="submit" class="btn btn-primary col-4 m-1 ml-5" value="Add this to your order" />
+              <a class="btn btn-success col-2 m-1 ml-1" href="/pizza/order/checkout">Checkout</a>
+              <a class="btn btn-danger col-2 m-1 ml-4" href="/pizza/quick">Cancel
+              </a>
             </div>
           </form>
         </div>
-        <div class="container-xl col-5 d-inline-block align-top">
-          <h3>LIST ITEMS IN THE ORDER SO FAR</h3>
+        <div id="div1" class="container-xl col-5 d-inline-block align-top">
+          <h3>Items in your order so far</h3>
         </div>
       </div>
     </div>

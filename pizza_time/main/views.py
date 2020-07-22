@@ -6,9 +6,24 @@ def index(request):
     return render(request, 'index.html')
 
 
-def order(request):
-    print('Order selected')
+def order_new(request):
+    print('INSIDE order_new METHOD')
     return render(request, 'order.html')
+
+
+def order_create(request):
+    print('INSIDE order_create METHOD')
+    return redirect('/pizza')
+
+
+def item_new(request):
+    print('INSIDE item_new METHOD')
+    return render(request, 'order.html')
+
+
+def item_create(request):
+    print('INSIDE item_create METHOD')
+    return
 
 
 def order_favorite(request):
@@ -22,7 +37,13 @@ def order_surprise(request):
 
 
 def order_add_item(request):
-    print('adding new item to order')
+    print('INSIDE order_add_item METHOD')
+    print('request.POST.methood', request.POST['method'])
+    print('request.POST.size', request.POST['size'])
+    print('request.POST.crust', request.POST['crust'])
+    print('request.POST.qty', request.POST['qty'])
+    print('request.POST.mushrooms', request.POST['mushrooms'])
+    print('request.POST', request.POST)
     return redirect('/pizza/order')
 
 
